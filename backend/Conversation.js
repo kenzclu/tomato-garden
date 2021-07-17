@@ -31,16 +31,27 @@ const addParticipant = async() => {
     console.log(sid)
 }
 
+const sendMessage = async(message, author) => {
+    client.conversations.conversations(data.sessions[data.sessions.length - 1].id)
+      .messages
+      .create({
+         body: message,
+         author: author
+       })
+      .then(message => console.log(message.sid))
+}
+
 // deletes the created channel otherwise they remain on twilio
 const deleteChannel = async(channelID) => {
     client.chat.services(convoServiceSID)
         .channels(channelID)
-        .remove();
+        .remove()
 }
 
 const main = async() => {
     await createConversation()
     await addParticipant()
+    await sendMessage('hey wassup YEEBOIIII!', 'Megumin')
     await deleteChannel(data.sessions[data.sessions.length - 1].id)
 }
 

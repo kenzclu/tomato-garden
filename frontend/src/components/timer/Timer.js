@@ -34,10 +34,19 @@ function Timer(props) {
                 {secondsToDigitalTime(seconds)}
             </div>
             <div className='timer-status-container'>
-                <div>Pomodoro</div>
-                <div>Short Break</div>
-                <div>Long Break</div>
-            </div>
+                <div className='arrow-up-container'>
+                    <div>Pomodoro</div>
+                    <div class="arrow-up"></div>
+                </div>
+                <div className='arrow-up-container'>
+                    <div>Short Break</div>
+                    <div class="arrow-up"></div>
+                </div>
+                <div className='arrow-up-container'>
+                    <div>Long Break</div>
+                    <div class="arrow-up"></div>
+                </div>
+            </div> 
         </div>
 
     )

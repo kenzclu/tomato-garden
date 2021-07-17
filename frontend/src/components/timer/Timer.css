@@ -1,0 +1,14 @@
+#root {
+  height: 100%;
+}
+
+.pomodoro {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+
+  font-size: 50px;
+}
+
+.message {
+  font-size: 25px;
+}

@@ -7,7 +7,7 @@ import './Dashboard.css'
 function Dashboard() {
   return (
     <div className='background'>
-      <Timer></Timer>
+      <Timer />
       <div className='container'>
         <Button noUi>Pomodoro</Button>
         <Button noUi>Short Break</Button>

@@ -12,10 +12,10 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/'>
+        <Route path='/landing'>
           <Landing />
         </Route>
-        <Route path='/pomodoro'>
+        <Route path='/'>
           <div className="app">
             <Sidebar />
             <Dashboard />

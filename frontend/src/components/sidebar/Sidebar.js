@@ -10,8 +10,13 @@ function Sidebar() {
       <div className='avatar'>
         <img src={avatar} alt='avatar 1' width='80%' height='auto' />
       </div>
-      <div className='todo'></div>
-      <Chat />
+      <div className='todo'>
+        <h2>Todo</h2>
+      </div>
+      <div>
+        <h2>Chat</h2>
+        <Chat />
+      </div>
     </div>
   )
 }

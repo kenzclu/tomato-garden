@@ -2,25 +2,32 @@
     display:flex;
     flex-direction: column;
     padding: 5px;
+    height: 60%;
+
+    overflow-y: scroll;
 }
 
-.message {
-    display: flex;
-    flex: column;
-    align-items: left;
-    width: 80%;
+.bubble {
+    padding: 8px;
+    width: fit-content;
 
     border-radius: 10px;
     border-top-left-radius: 0;
     background-color: palegoldenrod;
 }
 
-.my-message {
+.message-container {
     display: flex;
-    flex: column;
-    align-items: right;
-    width: 80%;
+    flex-direction: column;
+    text-align: left;
+}
 
+.my-message-container {
+    align-items: flex-end;
+}
+
+.my-bubble {
+    text-align: right;
 
     border-radius: 10px;
     border-top-right-radius: 0;

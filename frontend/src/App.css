@@ -1,9 +1,10 @@
-.App {
-  display: flex;
-  height: 100%;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
 }
 
 body {

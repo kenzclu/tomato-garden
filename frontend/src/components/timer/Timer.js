@@ -6,7 +6,6 @@ import './Timer.css';
 function Timer(props) {
     const START_TIME = props.startTime ? props.startTime * 60000 : 25 * 60000;
     const REST_TIME = props.restTime ? props.restTime * 60000 : 5 * 60000;
-    const LONG_REST_TIME =  props.restTime ? props.restTime * 60000 : 15 * 60000;
 
     const [finishTime, setFinishTime] = useState(Date.now() + START_TIME);
     const [seconds, setSeconds] = useState(differenceInSeconds(Date.now(), finishTime));
@@ -33,6 +32,11 @@ function Timer(props) {
             </div>
             <div className="timer">
                 {secondsToDigitalTime(seconds)}
+            </div>
+            <div className='timer-status-container'>
+                <div>Pomodoro</div>
+                <div>Short Break</div>
+                <div>Long Break</div>
             </div>
         </div>
 

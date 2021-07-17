@@ -4,16 +4,25 @@
 
 .pomodoro {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
 
-  font-size: 50px;
+  font-size: 80pt;
+  color: white;
+  font-family: monospace;
+}
+
+.timer-status-container {
+  display: flex;
+  flex-direction: row;
+
+  font-size: 12pt;
+}
+
+.timer-status-container > :not(div:first-child) {
+  margin-left: 24px;
 }
 
 .message {
   font-size: 25px;
-}
-body {
-  background-color: white;
-  color: black;
-  height: 100vh;
 }

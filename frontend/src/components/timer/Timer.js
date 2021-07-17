@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { differenceInSeconds, secondsToDigitalTime } from '../../lib/helper';
 
 import './Timer.css';
@@ -25,14 +25,14 @@ function Timer(props) {
 
     return (
         <div className="pomodoro">
-            <div className="message">
+            <div className="timer-message">
                 {isBreak && <div>Break Time! Next Session in: </div>}
             </div>
             <div className="timer">
                 {secondsToDigitalTime(seconds)}
             </div>
         </div>
-        
+
     )
 }
 

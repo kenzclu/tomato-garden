@@ -1,0 +1,29 @@
+.chat-container {
+    display:flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.message {
+    display: flex;
+    flex: column;
+    align-items: left;
+    width: 80%;
+
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    background-color: palegoldenrod;
+}
+
+.my-message {
+    display: flex;
+    flex: column;
+    align-items: right;
+    width: 80%;
+
+
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    background-color: powderblue;
+}
+

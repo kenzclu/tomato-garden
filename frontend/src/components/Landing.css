@@ -1,3 +1,26 @@
-.landing-container {
-    
+input:focus {
+  background: none;
+  outline: none;
+}
+
+.goal-input {
+  background: none;
+  border: none;
+  border-bottom: 2px solid black;
+  
+  padding: 5px;
+  font-size: 20px;
+  width: 80%;
+}
+
+.landing-paper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
 }

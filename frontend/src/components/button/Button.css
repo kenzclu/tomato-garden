@@ -1,0 +1,14 @@
+.button {
+    background: rgba(255, 255, 255, 0.75);
+    
+    border: none;
+    border-radius: 5%;
+
+    min-width: 6rem;
+    height: 2rem;
+}
+
+.noUi {
+    background-color: transparent;
+    border: none;
+}

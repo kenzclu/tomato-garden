@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { differenceInSeconds, secondsToDigitalTime } from '../../lib/helper';
-import 'react-circular-progressbar/dist/styles.css';
 
 import './Timer.css';
 
@@ -24,8 +22,6 @@ function Timer(props) {
         }, 100)
         return () => { clearInterval(interval) }
     }, [seconds])
-
-    const percentage = ((seconds * 1000)/START_TIME) * 100;
 
     return (
         <div className="pomodoro">

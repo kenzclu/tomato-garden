@@ -1,6 +1,4 @@
-
-
-const sessions = [{id: 1, users: [1, 2]}]
-const users = []
+const sessions = new Map()
+const users = {}
 
 module.exports = {sessions, users}

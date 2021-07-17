@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 
 app.use(cors());
 
-app.get('/sendmessage', (req, res) => {
+app.post('/sendmessage', (req, res) => {
   const { message, author } = req.body;
   convos.sendMessage(message, author);
   res.send({})
@@ -26,24 +26,36 @@ app.get('/deletechannel', (req, res) => {
   res.send({})
 });
 
+// finds your partner based on your id
+app.post('/partner', (req, res) => {
+  const { uid: id } = req.body;
+  for (const uid in data.users) {
+    if (uid === id) continue;
+    if (data.users[uid].chatID === data.users[id].chatID) {
+      res.send(data.users[uid]);
+      return;
+    }
+  }
+  res.send({ })
+})
+
 // route for creating new account
-app.get('/register', (req, res) => {
+app.post('/register', (req, res) => {
   const { username, avatar, subjects } = req.body;
   const uid = Object.keys(data.users).length;
   convos.createNewUser(uid, username, subjects, avatar);
 
   convos.matchUsers(uid)
 
-  res.send({uid})
+  res.send({ uid, username, subjects, avatar })
 });
 
-app.get('/getmessages', (req, res) => {
-  const { chatID } = req.body;
-  const messages = convos.retrieveMsgs(chatID);
-
-  res.send({messages})
+app.post('/getmessages', async (req, res) => {
+  const { uid } = req.body;
+  const messages = await convos.retrieveMsgs(data.users[uid].chatID);
+  res.send({ messages })
 });
 
-app.listen(3000, () =>
+app.listen(3001, () =>
   console.log(`Listening on ${process.env.PORT}`),
 );

@@ -39,7 +39,7 @@ const createNewUser = (userID, username, subjects, avatar) => {
 // Takes in the id of the user that created the new channel
 const createConversation = async () => {
     const { chatServiceSid, sid } = await client.conversations.conversations
-        .create({ friendlyName: '2 AM TEST :) IM OKAY' })
+        .create({ friendlyName: 'BACKEND TEST #1' })
 
     // data.sessions.push({ id: sid, users: [] })
     data.sessions.set(sid, 1)
@@ -97,10 +97,20 @@ const deleteChannel = async (chatID) => {
 }
 
 const retrieveMsgs = async (chatID) => {
-    let messagesList = []
-    await client.chat.services(convoServiceSID).channels(chatID).messages.list({limit: 20}).then(messages => messages.forEach(m => messagesList.push({author: m.from, body: m.body})))
-
-    return messagesList
+    const messagesList = [];
+    const messages = await client
+        .chat
+        .services(convoServiceSID)
+        .channels(chatID)
+        .messages
+        .list({limit: 20});
+    for (const message of messages) {
+        messagesList.push({
+            author: message.from,
+            message: message.body
+        })
+    };
+    return messagesList;
 }
 
 const main = async () => {

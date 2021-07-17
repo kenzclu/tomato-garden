@@ -2,7 +2,8 @@ import './App.css'
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from 'react-router-dom'
 import Dashboard from './components/Dashboard'
 import Sidebar from './components/sidebar/Sidebar'
@@ -12,15 +13,16 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/landing'>
+        <Route path='/' exact={true}>
           <Landing />
         </Route>
-        <Route path='/'>
+        <Route path='/pomodoro' exact={true}>
           <div className="app">
             <Sidebar />
             <Dashboard />
           </div>
         </Route>
+        <Redirect to='/' />
       </Switch>
     </Router>
   );

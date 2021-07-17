@@ -1,56 +1,56 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import classNames from 'classnames'
 import Button from '../button/Button'
 import './Chat.css'
+import axios from 'axios'
+
+const AlwaysScrollToBottom = () => {
+  const elementRef = useRef();
+  useEffect(() => elementRef.current.scrollIntoView());
+  return <div ref={elementRef} />;
+};
 
 function Chat() {
-  const myToken = 'abcdef'
-  const messages = [{
-    message: "i love potatoes",
-    author: "roycedadog",
-    token: "abcdef"
-  }, {
-    message: "wow me too",
-    author: "kendog",
-    token: "12345"
-  }, {
-    message: "what are your favourite kind of potatoes",
-    author: "roycedadog",
-    token: "abcdef"
-  }, {
-    message: "your toes",
-    author: "kendog",
-    token: "12345"
-  }, {
-    message: "your toes",
-    author: "kendog",
-    token: "12345"
-  }, {
-    message: "your toes",
-    author: "kendog",
-    token: "12345"
-  }, {
-    message: "your toes",
-    author: "kendog",
-    token: "12345"
-  }]
+  const [messages, setMessages] = useState([])
+  const [myMessage, setMyMessage] = useState('')
+  const username = sessionStorage.getItem('username')
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const response = await axios.post('http://localhost:3001/getmessages', {
+        uid: sessionStorage.getItem('uid')
+      });
+      setMessages(response.data.messages);
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
+  const handleClick = async () => {
+    await axios.post('http://localhost:3001/sendmessage', {
+      author: sessionStorage.getItem('uid'),
+      message: myMessage
+    });
+    setMyMessage('');
+  }
 
   return (
     <>
       <div className='chat-container'>
-        {messages.map(({ message, author, token }) => {
-          const myMessage = token === myToken;
+        {messages.length === 0 && <div>Say hello!</div>}
+        {messages.map(({ message, author }, index) => {
+          const myMessage = author === username;
           return (
-            <div className={classNames('message-container', { 'my-message-container': myMessage })}>
+            <div key={`${message}-${index}`} className={classNames('message-container', { 'my-message-container': myMessage })}>
               <div className='author'>{author}</div>
               <div className={classNames('bubble', { 'my-bubble': myMessage })}>{message}</div>
             </div>
           )
         })}
+        <AlwaysScrollToBottom />
       </div>
       <div className='message-input-container'>
-        <input className="message-input" type="text" />
-        <Button>Send</Button>
+        <input className="message-input" type="text" value={myMessage} onChange={(e) => setMyMessage(e.target.value)} />
+        <Button onClick={handleClick}>Send</Button>
       </div>
     </>
   )

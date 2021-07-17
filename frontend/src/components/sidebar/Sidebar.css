@@ -22,9 +22,17 @@
     font-size: 30px;
     font-weight: bold;
 }
+
 .chat{ 
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
+
+.goal {
+    font-size: large;
+    text-align: center;
+    font-style: italic;
+}
+
 .todo-container {
     display: flex;
     flex-direction: column;

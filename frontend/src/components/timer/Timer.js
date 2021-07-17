@@ -34,11 +34,11 @@ function Timer(props) {
             <div className='timer-status-container'>
                 <div className='arrow-up-container'>
                     <div>Pomodoro</div>
-                    <div class={classNames('arrow-up', { hidden: isBreak }, 'fade-in')}></div>
+                    <div className={classNames('arrow-up', { hidden: isBreak }, 'fade-in')}></div>
                 </div>
                 <div className='arrow-up-container'>
                     <div>Short Break</div>
-                    <div class={classNames('arrow-up', { hidden: !isBreak }, 'fade-in')}></div>
+                    <div className={classNames('arrow-up', { hidden: !isBreak }, 'fade-in')}></div>
                 </div>
             </div> 
         </div>

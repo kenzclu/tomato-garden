@@ -1,11 +1,14 @@
 import React from 'react'
-import { CircularProgressbarWithChildren as Progress, buildStyles } from 'react-circular-progressbar'
 
 function Timer() {
     return (
-        <>
-        </>
+        <div className="Pomodoro">
+            <div className="Message">
+                <div>Test</div>
+            </div>
+            <div className="Timer">25:00</div>
+        </div>
     )
 }
 
-export default TimerProgress
+export default Timer

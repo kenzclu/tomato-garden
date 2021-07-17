@@ -1,6 +1,20 @@
+h1 {
+  font-weight: 400;
+}
+
 input:focus {
   background: none;
   outline: none;
+}
+
+.name-input {
+  background: none;
+  border: none;
+  border-bottom: 2px solid black;
+  
+  padding: 5px;
+  font-size: 20px;
+  width: 50%;
 }
 
 .goal-input {
@@ -10,7 +24,7 @@ input:focus {
   
   padding: 5px;
   font-size: 20px;
-  width: 80%;
+  width: 80%
 }
 
 .landing-paper {
@@ -18,9 +32,9 @@ input:focus {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+/* 
   padding: 24px;
 
   background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 10px;
+  border-radius: 10px; */
 }

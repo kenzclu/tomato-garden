@@ -4,9 +4,9 @@ import classNames from 'classnames'
 import './Button.css'
 
 function Button(props) {
-  const { children, noUi } = props
+  const { children, noUi, opaque } = props
   return (
-    <button className={classNames('button', { noUi })}>
+    <button className={classNames('button', { noUi, opaque })}>
       {children}
     </button>
   );

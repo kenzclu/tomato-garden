@@ -1,6 +1,5 @@
 import React from 'react'
 import Timer from './timer/Timer'
-import Button from './button/Button'
 
 import './Dashboard.css'
 

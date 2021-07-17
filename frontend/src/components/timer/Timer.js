@@ -1,48 +1,35 @@
-import React, {useState, useEffect} from 'react'
-// import { CircularProgressbar } from 'react-circular-progressbar';
+import React, {useState, useEffect} from 'react';
+import { differenceInSeconds, secondsToDigitalTime } from '../../lib/helper';
+import './Timer.css';
 
-function Timer() {
-    const[minutes, setMinutes] = useState(0);
-    const[seconds, setSeconds] = useState(10);
-
-    const[displayMessage, setDisplayMessage] = useState(false);
+function Timer(props) {
+    const START_TIME = props.startTime ? props.startTime * 60000 : 25 * 60000;
+    const REST_TIME = props.restTime ? props.restTime * 60000 : 5 * 60000;
+    const [finishTime, setFinishTime] = useState(Date.now() + START_TIME);
+    const [seconds, setSeconds] = useState(differenceInSeconds(Date.now(), finishTime));
+    const [isBreak, setIsBreak] = useState(false);
 
     useEffect(() => {
-        let counter = setInterval(() => {
-            clearInterval(counter);
-            // if seconds hit 0 we need to check whether we need to go back to 59 or we have completely finished the timer
-            if (seconds === 0) {
-                // if minutes is not 0, we will just subtract the minute counter and set seconds to 59
-                if (minutes !== 0) {
-                    setSeconds(59);
-                    setMinutes(minutes - 1);
-                // if both minutes and seconds are 0 we have finished the timer and start our break 
-                // OR the second case if that we have finished our break and we want to start new timer
-                } else {
-                    let minutes = displayMessage ? 24 : 0;
-                    let seconds = 59;
+        if (seconds < 0) {
+            setIsBreak(!isBreak);
+            setFinishTime(isBreak ? Date.now() + START_TIME : Date.now() + REST_TIME);
+        }
+    }, [seconds])
 
-                    setSeconds(seconds);
-                    setMinutes(minutes);
-                    setDisplayMessage(!displayMessage);
-                }
-            } else {
-                setSeconds(seconds - 1);
-            }
-        }, 1000)
-    }, [seconds]);
-    
-    // if minutes/seconds is less than 10 we will have a zero in front of the first digit in the minutes/seconds
-    const minuteCounter = minutes < 10 ? `0${minutes}` : minutes;
-    const secondCounter = seconds < 10 ? `0${seconds}` : seconds;
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setSeconds(differenceInSeconds(Date.now(), finishTime));
+        }, 100)
+        return () => { clearInterval(interval) }
+    }, [seconds, isBreak, finishTime])
 
     return (
         <div className="pomodoro">
             <div className="message">
-                {displayMessage && <div>Break Time! Next Session in: </div>}
+                {isBreak && <div>Break Time! Next Session in: </div>}
             </div>
             <div className="timer">
-                {minuteCounter}:{secondCounter}
+                {secondsToDigitalTime(seconds)}
             </div>
         </div>
     )

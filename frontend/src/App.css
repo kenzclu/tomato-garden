@@ -45,12 +45,3 @@ body {
   color: red;
   height: 100vh;
 }
-#root {
-  height: 100%;
-}
-.pomodoro {
-  font-size: 50px;
-}
-.message {
-  font-size: 25px;
-}

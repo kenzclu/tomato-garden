@@ -10,18 +10,18 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 let convoServiceSID
 
-const createConversation = async() => {
-    const { chatServiceSid, sid  } = await client.conversations.conversations
-        .create({friendlyName: 'TESTING BEEP BOOP'})
-    
-    data.sessions.push({ id: sid, users: []})
+const createConversation = async () => {
+    const { chatServiceSid, sid } = await client.conversations.conversations
+        .create({ friendlyName: 'TESTING BEEP BOOP' })
+
+    data.sessions.push({ id: sid, users: [] })
     console.log(data)
     convoServiceSID = chatServiceSid
     console.log(convoServiceSID)
 }
 
 // TODO: add parameter for specific chat room we want to add participant to
-const addParticipant = async() => {
+const addParticipant = async () => {
     const { sid } = await client.conversations.conversations(data.sessions[data.sessions.length - 1].id)
         .participants
         .create({
@@ -31,24 +31,24 @@ const addParticipant = async() => {
     console.log(sid)
 }
 
-const sendMessage = async(message, author) => {
+const sendMessage = async (message, author) => {
     client.conversations.conversations(data.sessions[data.sessions.length - 1].id)
-      .messages
-      .create({
-         body: message,
-         author: author
-       })
-      .then(message => console.log(message.sid))
+        .messages
+        .create({
+            body: message,
+            author: author
+        })
+        .then(message => console.log(message.sid))
 }
 
 // deletes the created channel otherwise they remain on twilio
-const deleteChannel = async(channelID) => {
+const deleteChannel = async (channelID) => {
     client.chat.services(convoServiceSID)
         .channels(channelID)
         .remove()
 }
 
-const main = async() => {
+const main = async () => {
     await createConversation()
     await addParticipant()
     await sendMessage('hey wassup YEEBOIIII!', 'Megumin')

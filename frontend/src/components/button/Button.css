@@ -17,3 +17,10 @@
     background-color: transparent;
     border: none;
 }
+
+.opaque {
+    background: rgba(255, 255, 255, 0.5);
+    height: 4rem;
+    width: 10rem;
+    font-size: large;
+}

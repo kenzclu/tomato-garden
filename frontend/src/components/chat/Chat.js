@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-
+import Button from '../button/Button'
 import './Chat.css'
 
 function Chat() {
@@ -42,13 +42,16 @@ function Chat() {
           const myMessage = token === myToken;
           return (
             <div className={classNames('message-container', { 'my-message-container': myMessage })}>
-              <div>{author}</div>
+              <div className='author'>{author}</div>
               <div className={classNames('bubble', { 'my-bubble': myMessage })}>{message}</div>
             </div>
           )
         })}
       </div>
-      <input className="message-input" type="text"/>
+      <div className='message-input-container'>
+        <input className="message-input" type="text" />
+        <Button>Send</Button>
+      </div>
     </>
   )
 }

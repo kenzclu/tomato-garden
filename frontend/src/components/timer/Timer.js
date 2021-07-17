@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { differenceInSeconds, secondsToDigitalTime } from '../../lib/helper';
+import classNames from 'classnames';
 
 import './Timer.css';
 
@@ -13,38 +14,31 @@ function Timer(props) {
     
     useEffect(() => {
         if (seconds < 0) {
-            setIsBreak(!isBreak);
+            setIsBreak(i => !i);
             setFinishTime(isBreak ? Date.now() + START_TIME : Date.now() + REST_TIME);
         }
-    }, [seconds])
+    }, [seconds, START_TIME, REST_TIME])
 
     useEffect(() => {
         const interval = setInterval(() => {
             setSeconds(differenceInSeconds(Date.now(), finishTime));
         }, 100)
         return () => { clearInterval(interval) }
-    }, [seconds])
+    }, [seconds, finishTime])
 
     return (
         <div className="pomodoro">
-            <div className="timer-message">
-                {isBreak && <div>Break Time! Next Session in: </div>}
-            </div>
             <div className="timer">
                 {secondsToDigitalTime(seconds)}
             </div>
             <div className='timer-status-container'>
                 <div className='arrow-up-container'>
                     <div>Pomodoro</div>
-                    <div class="arrow-up"></div>
+                    <div class={classNames('arrow-up', { hidden: isBreak }, 'fade-in')}></div>
                 </div>
                 <div className='arrow-up-container'>
                     <div>Short Break</div>
-                    <div class="arrow-up"></div>
-                </div>
-                <div className='arrow-up-container'>
-                    <div>Long Break</div>
-                    <div class="arrow-up"></div>
+                    <div class={classNames('arrow-up', { hidden: !isBreak }, 'fade-in')}></div>
                 </div>
             </div> 
         </div>

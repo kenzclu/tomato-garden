@@ -4,4 +4,13 @@
   width: 100vw;
   left: 10vw;
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-container {
+  margin-left: 20vw;
 }

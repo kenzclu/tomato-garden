@@ -6,9 +6,12 @@ import './Timer.css';
 function Timer(props) {
     const START_TIME = props.startTime ? props.startTime * 60000 : 25 * 60000;
     const REST_TIME = props.restTime ? props.restTime * 60000 : 5 * 60000;
+    const LONG_REST_TIME =  props.restTime ? props.restTime * 60000 : 15 * 60000;
+
     const [finishTime, setFinishTime] = useState(Date.now() + START_TIME);
     const [seconds, setSeconds] = useState(differenceInSeconds(Date.now(), finishTime));
     const [isBreak, setIsBreak] = useState(false);
+    
     useEffect(() => {
         if (seconds < 0) {
             setIsBreak(!isBreak);

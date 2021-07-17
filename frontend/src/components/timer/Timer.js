@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { differenceInSeconds, secondsToDigitalTime } from '../../lib/helper';
+import 'react-circular-progressbar/dist/styles.css';
+
 import './Timer.css';
 
 function Timer(props) {
@@ -8,7 +11,6 @@ function Timer(props) {
     const [finishTime, setFinishTime] = useState(Date.now() + START_TIME);
     const [seconds, setSeconds] = useState(differenceInSeconds(Date.now(), finishTime));
     const [isBreak, setIsBreak] = useState(false);
-
     useEffect(() => {
         if (seconds < 0) {
             setIsBreak(!isBreak);
@@ -21,7 +23,9 @@ function Timer(props) {
             setSeconds(differenceInSeconds(Date.now(), finishTime));
         }, 100)
         return () => { clearInterval(interval) }
-    }, [seconds, isBreak, finishTime])
+    }, [seconds])
+
+    const percentage = ((seconds * 1000)/START_TIME) * 100;
 
     return (
         <div className="pomodoro">
@@ -32,6 +36,7 @@ function Timer(props) {
                 {secondsToDigitalTime(seconds)}
             </div>
         </div>
+        
     )
 }
 

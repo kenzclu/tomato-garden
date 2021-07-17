@@ -40,8 +40,4 @@
     transform: rotate(360deg);
   }
 }
-body {
-  background-color: black;
-  color: red;
-  height: 100vh;
-}
+

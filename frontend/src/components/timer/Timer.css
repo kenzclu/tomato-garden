@@ -12,3 +12,8 @@
 .message {
   font-size: 25px;
 }
+body {
+  background-color: white;
+  color: black;
+  height: 100vh;
+}

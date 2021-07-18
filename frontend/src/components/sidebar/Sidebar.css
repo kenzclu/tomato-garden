@@ -1,7 +1,7 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 
     padding: 16px;
 
@@ -24,7 +24,8 @@
 }
 
 .chat{ 
-    overflow-y: scroll;
+    overflow-y: hidden;
+    height: 500px;
 }
 
 .goal {
@@ -37,7 +38,6 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    
 }
 
 .checkbox {

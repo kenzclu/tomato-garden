@@ -1,4 +1,4 @@
-h1 {
+h1, h2, h3 {
   font-weight: 400;
 }
 
@@ -14,7 +14,7 @@ input:focus {
   
   padding: 5px;
   font-size: 20px;
-  width: 50%;
+  width: 70%;
 }
 
 .goal-input {
@@ -24,7 +24,7 @@ input:focus {
   
   padding: 5px;
   font-size: 20px;
-  width: 80%
+  width: 90%
 }
 
 .avatar-select {
@@ -37,7 +37,7 @@ input:focus {
   align-items: center;
   justify-content: center;
 
-  padding: 24px;
+  padding: 24px 64px;
 
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 10px;

@@ -10,7 +10,7 @@
     width: 8px;
 }
 .chat-container::-webkit-scrollbar-thumb {
-    background-color: gray;
+    background-color: white;
     border-radius: 50px;
 }
 .chat-container::-webkit-scrollbar-track {
